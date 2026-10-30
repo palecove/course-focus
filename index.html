@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>
+            课间 Focus · 智能学习管理
+        </title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="app-shell">
+            <aside class="sidebar">
+                <div class="brand">
+                    <span class="brand-mark">
+                        F
+                    </span>
+                    <div>
+                        <b>
+                            课间 Focus
+                        </b>
+                        <small>
+                            SMART STUDY SYSTEM
+                        </small>
+                    </div>
+                </div>
+                <div class="connection-pill">
+                    <i id="connection-dot" class="status-dot">
+                    </i>
+                    <span id="connection-status">
+                        模拟模式 · 未连接
+                    </span>
+                </div>
+                <nav class="main-nav">
+                    <button class="nav-item active" data-view="dashboard">
+                        ◉
+                        <span>
+                            今日概览
+                        </span>
+                    </button>
+                    <button class="nav-item" data-view="schedule">
+                        ▤
+                        <span>
+                            课表管理
+                        </span>
+                    </button>
+                    <button class="nav-item" data-view="focus">
+                        ◌
+                        <span>
+                            学习时间
+                        </span>
+                    </button>
+                    <button class="nav-item" data-view="device">
+                        ⌁
+                        <span>
+                            设备与蓝牙
+                        </span>
+                    </button>
+                    <button class="nav-item" data-view="reminder">
+                        ♢
+                        <span>
+                            提醒配置
+                        </span>
+                    </button>
+                    <button class="nav-item" data-view="logs">
+                        ≡
+                        <span>
+                            通信日志
+                        </span>
+                    </button>
+                </nav>
+                <div class="sidebar-foot">
+                    <div class="mode-note">
+                        <i>
+                        </i>
+                        <div>
+                            <b>
+                                模拟模式可用
+                            </b>
+                            <small>
+                                先体验界面与流程
+                            </small>
+                        </div>
+                    </div>
+                    <button class="ghost-button" data-view="device">
+                        连接 HC-04D ↗
+                    </button>
+                </div>
+            </aside>
+            <main class="main-content">
+                <header class="topbar">
+                    <div>
+                        <p class="eyebrow">
+                            周五 · 10 月 30 日
+                        </p>
+                        <h1 id="page-title">
+                            下午好，开始有序的一天
+                        </h1>
+                    </div>
+                    <div class="top-actions">
+                        <time id="clock">
+                            --:--:--
+                        </time>
+                        <button class="icon-button" id="connect-btn">
+                            ⌁
+                        </button>
+                        <button class="avatar">
+                            L
+                        </button>
+                    </div>
+                </header>
+                <section class="view active" id="view-dashboard">
+                    <div class="hero-grid">
+                        <article class="hero-card">
+                            <div>
+                                <label>
+                                    TODAY'S FOCUS
+                                </label>
+                                <h2>
+                                    今天课程已结束
+                                </h2>
+                                <p>
+                                    可以安排一段专注时间，给今天留一点收尾。
+                                </p>
+                                <button class="primary-button" data-view="focus">
+                                    开始专注 →
+                                </button>
+                            </div>
+                            <div class="orbit">
+                                <div>
+                                    <strong id="focus-time">
+                                        00:00
+                                    </strong>
+                                    <small>
+                                        今日专注
+                                    </small>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="stat-card">
+                            <label>
+                                设备状态
+                            </label>
+                            <strong id="device-summary">
+                                未连接
+                            </strong>
+                            <p id="device-summary-note">
+                                等待 HC-04D 或继续使用模拟模式
+                            </p>
+                            <div class="status-row">
+                                <i id="device-status-dot" class="status-dot">
+                                </i>
+                                <span id="device-status-text">
+                                    模拟模式
+                                </span>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="section-head">
+                        <div>
+                            <label>
+                                PLAN
+                            </label>
+                            <h2>
+                                今天的课程
+                            </h2>
+                        </div>
+                        <button class="text-button" data-view="schedule">
+                            编辑课表 ↗
+                        </button>
+                    </div>
+                    <article class="card schedule-card" id="today-courses">
+                        <div class="empty">
+                            <i>
+                                ☼
+                            </i>
+                            <div>
+                                <b>
+                                    今天没有安排课程
+                                </b>
+                                <p>
+                                    新增一节课，让设备提醒和专注计时跟着你的计划走。
+                                </p>
+                            </div>
+                            <button class="outline-button" id="empty-add-course">
+                                添加课程
+                            </button>
+                        </div>
+                    </article>
+                    <div class="section-head">
+                        <div>
+                            <label>
+                                DESK CONTROL
+                            </label>
+                            <h2>
+                                桌面控制
+                            </h2>
+                        </div>
+                        <span class="muted">
+                            操作会记录在通信日志
+                        </span>
+                    </div>
+                    <div class="control-grid">
+                        <button class="control-card" id="lampBtn">
+                            <i>
+                                ☼
+                            </i>
+                            <span>
+                                <b>
+                                    桌面台灯
+                                </b>
+                                <small id="lamp-status">
+                                    已开启 · 柔光模式
+                                </small>
+                            </span>
+                            <em>
+                                ON
+                            </em>
+                        </button>
+                        <button class="control-card" id="led-on-btn">
+                            <i class="warm">
+                                ●
+                            </i>
+                            <span>
+                                <b>
+                                    LED 指示灯
+                                </b>
+                                <small id="led-status">
+                                    关闭（模拟）
+                                </small>
+                            </span>
+                            <em id="led-light">
+                                OFF
+                            </em>
+                        </button>
+                        <button class="control-card" id="testReminder">
+                            <i class="blue">
+                                ♢
+                            </i>
+                            <span>
+                                <b>
+                                    测试提醒
+                                </b>
+                                <small>
+                                    蜂鸣器与通知预览
+                                </small>
+                            </span>
+                            <em>
+                                →
+                            </em>
+                        </button>
+                    </div>
+                    <div class="two-col">
+                        <article class="card info-card">
+                            <label>
+                                NEXT STEP
+                            </label>
+                            <h3>
+                                给自己 25 分钟
+                                <span class="tag">
+                                    推荐
+                                </span>
+                            </h3>
+                            <p>
+                                没有课表也可以专注。设置一个短时段，把今天最后一件事完成。
+                            </p>
+                            <button class="secondary-button" data-view="focus">
+                                设置专注时段
+                            </button>
+                        </article>
+                        <article class="card info-card warning">
+                            <label>
+                                HARDWARE NOTE
+                            </label>
+                            <h3>
+                                电控锁锁机待验证
+                                <span class="tag pending">
+                                    待验证
+                                </span>
+                            </h3>
+                            <p>
+                                通过电控锁把手机固定在学习设备的锁定位置；真实锁体与执行机构需要硬件联调。
+                            </p>
+                            <button class="secondary-button" data-view="device">
+                                查看设备状态
+                            </button>
+                        </article>
+                    </div>
+                </section>
+                <section class="view" id="view-schedule">
+                    <div class="section-head">
+                        <div>
+                            <label>
+                                SCHEDULE
+                            </label>
+                            <h2>
+                                课表管理
+                            </h2>
+                        </div>
+                        <button class="primary-button" id="add-course-btn">
+                            ＋ 新增课程
+                        </button>
+                    </div>
+                    <article class="card panel">
+                        <div class="tabs">
+                            <button class="tab" data-day="周一">周一</button>
+                            <button class="tab" data-day="周二">周二</button>
+                            <button class="tab" data-day="周三">周三</button>
+                            <button class="tab" data-day="周四">周四</button>
+                            <button class="tab active" data-day="周五">
+                                今天 · 周五
+                            </button>
+                            <button class="tab" data-day="周六">
+                                周六
+                            </button>
+                            <button class="tab" data-day="周日">
+                                周日
+                            </button>
+                        </div>
+                        <div id="schedule-list" class="schedule-list">
+                            <div class="empty left">
+                                <i>
+                                    ▦
+                                </i>
+                                <div>
+                                    <b>
+                                        还没有课程安排
+                                    </b>
+                                    <p>
+                                        添加课程后，提醒与专注计划会自动关联。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+                <section class="view" id="view-focus">
+                    <div class="section-head">
+                        <div>
+                            <label>
+                                FOCUS TIME
+                            </label>
+                            <h2>
+                                学习时间设置
+                            </h2>
+                        </div>
+                        <span class="tag">
+                            本地保存
+                        </span>
+                    </div>
+                    <div class="two-col">
+                        <article class="card panel focus-panel">
+                            <div class="focus-ring">
+                                <strong id="timer-display">
+                                    25:00
+                                </strong>
+                                <small>
+                                    专注时长
+                                </small>
+                            </div>
+                            <div>
+                                <button class="primary-button" id="start-focus">
+                                    开始专注
+                                </button>
+                                <button class="outline-button" id="reset-focus">
+                                    重置
+                                </button>
+                            </div>
+                            <div class="range-row">
+                                <label>
+                                    专注时长
+                                    <b id="focus-range-value">
+                                        25 分钟
+                                    </b>
+                                </label>
+                                <input id="focus-range" type="range" min="5" max="90" step="5" value="25">
+                            </div>
+                            <div class="range-row">
+                                <label>
+                                    休息时长
+                                    <b id="break-range-value">
+                                        5 分钟
+                                    </b>
+                                </label>
+                                <input id="break-range" type="range" min="1" max="30" value="5">
+                            </div>
+                        </article>
+                        <article class="card panel">
+                            <label>
+                                SESSION PLAN
+                            </label>
+                            <h3>
+                                专注时段
+                            </h3>
+                            <div class="setting">
+                                <span>
+                                    工作日默认
+                                </span>
+                                <b>
+                                    09:00 — 18:00
+                                </b>
+                            </div>
+                            <div class="setting">
+                                <span>
+                                    自动进入电控锁待验证流程
+                                </span>
+                                <i class="switch on">
+                                </i>
+                            </div>
+                            <div class="setting">
+                                <span>
+                                    完成时提醒
+                                </span>
+                                <i class="switch on">
+                                </i>
+                            </div>
+                            <p class="helper">
+                                电控锁动作需要真实锁体、驱动电路和设备反馈验证，当前仅记录学习流程。
+                            </p>
+                        </article>
+                    </div>
+                </section>
+                <section class="view" id="view-device">
+                    <div class="section-head">
+                        <div>
+                            <label>
+                                DEVICE CENTER
+                            </label>
+                            <h2>
+                                设备与蓝牙
+                            </h2>
+                        </div>
+                        <button class="primary-button" id="connect-btn-secondary">
+                            连接 HC-04D
+                        </button>
+                    </div>
+                    <div class="device-grid">
+                        <article class="card panel device-main">
+                            <div class="device-title">
+                                <i>
+                                    ⌁
+                                </i>
+                                <div>
+                                    <label>
+                                        BLUETOOTH LINK
+                                    </label>
+                                    <h3 id="device-name">
+                                        尚未连接设备
+                                    </h3>
+                                    <p id="device-feedback">
+                                        尚未收到设备反馈
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="setting">
+                                <span>
+                                    连接状态
+                                </span>
+                                <b id="device-status-detail">
+                                    模拟模式 · 未连接
+                                </b>
+                            </div>
+                            <div class="setting">
+                                <span>
+                                    运行模式
+                                </span>
+                                <b id="control-mode">
+                                    当前为模拟模式，操作不会控制真实硬件
+                                </b>
+                            </div>
+                            <button class="outline-button full" id="disconnect-btn">
+                                断开蓝牙
+                            </button>
+                        </article>
+                        <article class="card panel">
+                            <label>
+                                PHYSICAL LOCK
+                            </label>
+                            <h3>
+                                电控锁锁机
+                            </h3>
+                            <div class="lock">
+                                <i>
+                                    ⌑
+                                </i>
+                                <div>
+                                    <b>
+                                        等待电控锁硬件验证
+                                    </b>
+                                    <small>
+                                        网页控制入口已就绪
+                                    </small>
+                                </div>
+                            </div>
+                            <p class="helper">
+                                当前按钮不会伪造成功状态，真实电控锁需要锁体、驱动电路和硬件反馈联调。
+                            </p>
+                            <button class="secondary-button full" id="lock-btn">
+                                查看电控锁状态
+                            </button>
+                        </article>
+                        <article class="card panel">
+                            <label>
+                                DEVICE FEEDBACK
+                            </label>
+                            <h3>
+                                LED 控制
+                            </h3>
+                            <p class="helper">
+                                模拟模式用于验证界面反馈；真实连接后才会发送 BLE 指令。
+                            </p>
+                            <button class="secondary-button" id="led-off-btn">
+                                关闭 LED
+                            </button>
+                            <button class="primary-button" id="device-led-on">
+                                打开 LED
+                            </button>
+                        </article>
+                    </div>
+                </section>
+                <section class="view" id="view-reminder">
+                    <div class="section-head">
+                        <div>
+                            <label>
+                                REMINDERS
+                            </label>
+                            <h2>
+                                蜂鸣器提醒配置
+                            </h2>
+                        </div>
+                        <button class="primary-button" id="save-reminders">
+                            保存配置
+                        </button>
+                    </div>
+                    <div class="two-col">
+                        <article class="card panel">
+                            <div class="setting">
+                                <div>
+                                    <b>
+                                        上课前提醒
+                                    </b>
+                                    <small>
+                                        提前 5 分钟
+                                    </small>
+                                </div>
+                                <i class="switch on">
+                                </i>
+                            </div>
+                            <div class="setting">
+                                <div>
+                                    <b>
+                                        下课提醒
+                                    </b>
+                                    <small>
+                                        课程结束时
+                                    </small>
+                                </div>
+                                <i class="switch on">
+                                </i>
+                            </div>
+                            <div class="setting">
+                                <div>
+                                    <b>
+                                        专注结束提醒
+                                    </b>
+                                    <small>
+                                        蜂鸣器 + 页面提示
+                                    </small>
+                                </div>
+                                <i class="switch on">
+                                </i>
+                            </div>
+                        </article>
+                        <article class="card panel">
+                            <label>
+                                SOUND PROFILE
+                            </label>
+                            <h3>
+                                提醒音设置
+                            </h3>
+                            <select>
+                                <option>
+                                    轻柔提示音
+                                </option>
+                                <option>
+                                    短促蜂鸣
+                                </option>
+                            </select>
+                            <div class="range-row">
+                                <label>
+                                    持续时长
+                                    <b id="sound-range-value">
+                                        2 秒
+                                    </b>
+                                </label>
+                                <input id="sound-range" type="range" min="1" max="10" value="2">
+                            </div>
+                            <p class="helper">
+                                真实蜂鸣器音量与硬件响应需要接入设备后验证。
+                            </p>
+                        </article>
+                    </div>
+                </section>
+                <section class="view" id="view-logs">
+                    <div class="section-head">
+                        <div>
+                            <label>
+                                COMMUNICATION LOG
+                            </label>
+                            <h2>
+                                通信日志与异常
+                            </h2>
+                        </div>
+                        <button class="outline-button" id="clear-log-btn">
+                            清空日志
+                        </button>
+                    </div>
+                    <article class="card panel">
+                        <div class="log-toolbar">
+                            <span>
+                                <i class="status-dot status-connected">
+                                </i>
+                                本地事件流
+                            </span>
+                            <span id="log-count">
+                                0 条记录
+                            </span>
+                        </div>
+                        <ul id="operation-log" class="operation-log">
+                        </ul>
+                    </article>
+                </section>
+            </main>
+        </div>
+        
+<div class="modal-backdrop" id="course-modal" aria-hidden="true">
+    <section class="course-modal" role="dialog" aria-modal="true" aria-labelledby="course-modal-title">
+        <div class="modal-header">
+            <div>
+                <label>NEW COURSE</label>
+                <h2 id="course-modal-title">添加课程</h2>
+            </div>
+            <button class="modal-close" id="close-course-modal" aria-label="关闭">×</button>
+        </div>
+        <form id="course-form" class="course-form">
+            <label class="field-label" for="course-name">课程名称</label>
+            <input id="course-name" name="courseName" type="text" placeholder="例如：高等数学 · 极限与连续" required>
+            <div class="form-grid">
+                <div>
+                    <label class="field-label" for="course-day">星期</label>
+                    <select id="course-day" name="courseDay">
+                        <option>周一</option><option>周二</option><option>周三</option>
+                        <option>周四</option><option selected>周五</option><option>周六</option><option>周日</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="field-label" for="course-color">标记颜色</label>
+                    <select id="course-color" name="courseColor">
+                        <option value="mint">鼠尾草绿</option><option value="blue">雾蓝</option><option value="gold">暖金</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-grid">
+                <div>
+                    <label class="field-label" for="course-start">开始时间</label>
+                    <input id="course-start" name="courseStart" type="time" value="14:00" required>
+                </div>
+                <div>
+                    <label class="field-label" for="course-end">结束时间</label>
+                    <input id="course-end" name="courseEnd" type="time" value="15:40" required>
+                </div>
+            </div>
+            <label class="field-label" for="course-note">备注（可选）</label>
+            <textarea id="course-note" name="courseNote" rows="2" placeholder="例如：带计算器、课后复习 20 分钟"></textarea>
+            <div class="modal-actions">
+                <button type="button" class="outline-button" id="cancel-course">取消</button>
+                <button type="submit" class="primary-button">保存课程</button>
+            </div>
+        </form>
+    </section>
+</div>
+<div id="toast" class="toast">
+        </div>
+        <script type="module" src="script.js">
+        </script>
+    </body>
+</html>
+
+
+
